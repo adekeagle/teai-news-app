@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div class="p-3 mb-2 bg-info text-white">
+        <table class="table table-hover table-sm text-dark" >
+            <tr>
+                <th>News id</th>
+                <th>Autor</th>
+                <th>Tytuł</th>
+                <th>Opis</th>
+                <th>Zawartość</th>
+                <th>Data</th>
+                <th>url</th>
+                <th>Obrazek</th>
+            </tr>
+            <tr th:each="news: ${newsList}">
+                <td><p th:text="${news.}"></p></td>
+                <td><p th:text="${news.getType()}"></p></td>
+                <td><p th:text="${news.getSectionName()}"></p></td>
+                <td><p th:text="${news.getWebTitle()}"></p></td>
+                <td><p th:text="${news.getWebUrl()}"></p></td>
+
+                <td><a type="button" class="btn btn-dark" th:href="${'news/update/' +newresult.getResId()}">Update</a></td>
+                <td><a type="button" class="btn btn-dark" th:href="${'news/delete/' + newresult.getResId()}">Delete</a></td>
+                <td><a type="button" class="btn btn-dark" th:href="${'news/getUrl/' +newresult.getResId()}">Url</a></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

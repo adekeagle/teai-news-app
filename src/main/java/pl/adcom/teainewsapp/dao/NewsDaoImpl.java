@@ -64,16 +64,23 @@ public class NewsDaoImpl implements NewsDao {
 
     @Override
     public void modifyNews(NewsDb newsDb) {
-
+        String sql = "UPDATE news SET author = ?, title = ?,"
+                + "description = ?, content = ?, publish_date = ?,"
+                + "url = ?, url_image = ? WHERE id = ?";
+        jdbcTemplate.update(sql, newsDb.getAuthor(), newsDb.getTitle(), newsDb.getDescription(),
+                                newsDb.getContent(), newsDb.getPublishDate(), newsDb.getUrl(),
+                                newsDb.getUrlImage(), newsDb.getId());
     }
 
     @Override
     public NewsDb searchNewsById(long id) {
-        return null;
+        String sql = "SELECT * FROM news WHERE id = ?";
+        return jdbcTemplate.queryForObject(sql, (rs, i) -> new NewsDb(rs.getLong("id"), rs.getString("url")), id);
     }
 
     @Override
     public void deleteNewsById(long id) {
-
+        String sql = "DELETE FROM news WHERE id = ?";
+        jdbcTemplate.update(sql, id);
     }
 }

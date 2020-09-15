@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pl.adcom.teainewsapp.dao.NewsDao;
 import pl.adcom.teainewsapp.model.Article;
+import pl.adcom.teainewsapp.model.NewsDb;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class NewsService {
@@ -42,5 +44,25 @@ public class NewsService {
                     articleNews().getUrl(),
                     articleNews().getUrlToImage());
         }
+    }
+
+    public List<NewsDb> getAllNews(){
+        return newsDao.getAllNews();
+    }
+
+    public NewsDb getNewsById(long id){
+        return newsDao.getNewsById(id);
+    }
+
+    public void modifyNews(NewsDb newsDb){
+        newsDao.modifyNews(newsDb);
+    }
+
+    public NewsDb searchNewsById(long id){
+        return newsDao.searchNewsById(id);
+    }
+
+    public void delNewsById(long id){
+        newsDao.deleteNewsById(id);
     }
 }
